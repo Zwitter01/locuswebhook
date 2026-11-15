@@ -1,0 +1,24 @@
+{
+  "name": "location-tracker",
+  "version": "1.0.0",
+  "description": "Real-time location tracker with Telegram bot and email notifications, doorstep reverse geocoding, and interactive glassmorphic cosmic UI.",
+  "main": "LOcation/server.js",
+  "scripts": {
+    "start": "node LOcation/server.js",
+    "dev": "node --watch LOcation/server.js",
+    "get-chat-id": "node LOcation/get-chat-id.js"
+  },
+  "keywords": [
+    "location-tracker",
+    "geolocation",
+    "telegram-bot",
+    "reverse-geocoding",
+    "nodemailer",
+    "express",
+    "react",
+    "vite",
+    "gps-tracker"
+  ],
+  "author": "Vishal Prajapati",
+  "license": "MIT"
+}

@@ -1,0 +1,10 @@
+{
+  "description": "Enhances websites with dynamic animations and effects to create engaging, visually appealing user experiences that boost interaction and retention.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
