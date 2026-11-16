@@ -13,9 +13,9 @@ const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 
 const EMAIL_SERVICE = process.env.EMAIL_SERVICE || 'gmail';
-const EMAIL_USER = process.env.EMAIL_USER || 'victusgefroce14@gmail.com';
+const EMAIL_USER = process.env.EMAIL_USER;
 const EMAIL_PASS = process.env.EMAIL_PASS;
-const EMAIL_TO = process.env.EMAIL_TO || 'victusgefroce14@gmail.com';
+const EMAIL_TO = process.env.EMAIL_TO || process.env.EMAIL_USER;
 
 // Configure nodemailer transporter if credentials are provided
 let mailTransporter = null;
@@ -46,7 +46,7 @@ app.get('/api/status', (req, res) => {
     res.json({
         telegramConfigured: !!(TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID),
         emailConfigured: !!(EMAIL_USER && EMAIL_PASS),
-        telegramAccount: 'https://t.me/Zwitter_14',
+        telegramAccount: TELEGRAM_CHAT_ID ? `Configured (Chat ID: ${TELEGRAM_CHAT_ID})` : 'Not Configured',
         emailRecipient: EMAIL_TO
     });
 });
@@ -204,7 +204,7 @@ ${speed ? `🏎️ <b>Movement Speed:</b> ${speed} m/s\n` : ''}${heading ? `🧭
 
             await sendTelegramMessage(telegramMessage);
             deliveryStatus.telegram.success = true;
-            deliveryStatus.telegram.note = 'Delivered to Telegram (@Zwitter_14)';
+            deliveryStatus.telegram.note = 'Delivered to Telegram';
             console.log('✅ Sent location notification to Telegram!');
         } catch (error) {
             console.error('❌ Error sending to Telegram:', error.message);
@@ -361,7 +361,7 @@ if (!process.env.VERCEL) {
     app.listen(PORT, () => {
         console.log('======================================================');
         console.log(`🚀 Location Tracker Server running on http://localhost:${PORT}`);
-        console.log(`📱 Telegram Target: @Zwitter_14 (Configured: ${TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID ? '✅ YES' : '❌ PENDING'})`);
+        console.log(`📱 Telegram Webhook: ${TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID ? '✅ Configured' : '❌ PENDING (.env required)'}`);
         console.log('======================================================\n');
     });
 }
